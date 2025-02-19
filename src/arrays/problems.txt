@@ -1,0 +1,12 @@
+1. highest and second highest element in array
+2. smallest and second smallest element in array
+3. check if array is sorted
+4. rotate array once
+5. rotate array d times
+6. union of sorted array
+7. intersection of sorted array
+8. move zeros to end
+9. linear search
+10. longest 1's sequence
+11. longest sub-array with sum k
+
