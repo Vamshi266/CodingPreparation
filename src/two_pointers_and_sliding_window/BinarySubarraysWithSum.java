@@ -52,8 +52,8 @@ public class BinarySubarraysWithSum {
 
     // Time Complexity = O(N)
     // Space Complexity = O(1)
-    public static int optimal(int arr[], int k) {
-
+    // this computes all the subarrays with sum <= k
+    public static int util(int arr[], int k) {
 	if (k < 0)
 	    return 0;
 
@@ -78,6 +78,16 @@ public class BinarySubarraysWithSum {
 	}
 
 	return count;
+    }
+
+    // util(arr, k) - util(arr, k - 1) = subarrays with sum k
+    public static int optimal(int arr[], int k) {
+
+	return util(arr, k) - util(arr, k - 1);
+
+    }
+
+    public static void main(String[] args) {
 
     }
 
