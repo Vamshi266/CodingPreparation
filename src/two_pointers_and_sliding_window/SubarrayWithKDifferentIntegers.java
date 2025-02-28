@@ -1,24 +1,56 @@
 package two_pointers_and_sliding_window;
 
-public class CountNumberOfNiceSubarrays {
+import java.util.HashMap;
+import java.util.Map;
+
+public class SubarrayWithKDifferentIntegers {
 
     // Time Complexity = O(N^2)
-    // Space Complexity = O(1)
+    // Space Complexity = O(N)
     public static int bruteForce(int arr[], int k) {
-	int oddCount = 0;
-	int count = 0;
 	int n = arr.length;
+	Map<Integer, Integer> hm = new HashMap<>();
+	int count = 0;
 
 	for (int i = 0; i < n; i++) {
-	    oddCount = 0;
+	    hm.clear();
 	    for (int j = i; j < n; j++) {
-		if (arr[j] % 2 != 0)
-		    oddCount++;
+		hm.put(arr[j], hm.getOrDefault(arr[j], 0) + 1);
 
-		if (oddCount == k)
+		if (hm.size() == k)
 		    count++;
+		else if (hm.size() > k)
+		    break;
+
+	    }
+	}
+
+	return count;
+    }
+
+    public static int util(int arr[], int k) {
+	int n = arr.length;
+	int count = 0;
+	Map<Integer, Integer> hm = new HashMap<>();
+
+	int l = 0;
+	int r = 0;
+
+	while (r < n) {
+
+	    hm.put(arr[r], hm.getOrDefault(arr[r], 0) + 1);
+
+	    while (hm.size() > k && l <= r) {
+		hm.put(arr[l], hm.get(arr[l]) - 1);
+
+		if (hm.get(arr[l]) == 0)
+		    hm.remove(arr[l]);
+
+		l++;
 	    }
 
+	    count += (r - l + 1);
+	    r++;
 	}
 
 	return count;
@@ -26,41 +58,17 @@ public class CountNumberOfNiceSubarrays {
     }
 
     // Time Complexity = O(N)
-    // Space Complexity = O(1)
-    public static int util(int arr[], int k) {
-	int sum = 0;
-	int count = 0;
-	int n = arr.length;
-
-	int l = 0;
-	int r = 0;
-
-	while (r < n) {
-
-	    sum += (arr[r] % 2);
-
-	    while (sum > k) {
-		sum -= (arr[l] % 2);
-		l++;
-	    }
-	    count += (r - l + 1);
-	    r++;
-	}
-
-	return count;
-    }
-
+    // Space Complexity = O(N)
     public static int optimal(int arr[], int k) {
 	return util(arr, k) - util(arr, k - 1);
     }
 
     public static void main(String[] args) {
-	int arr[] = { 1, 1, 2, 1, 1 };
+	int arr[] = { 1, 2, 1, 3, 4 };
 
 	int res = bruteForce(arr, 3);
 
 	System.out.println("res = " + res);
-
     }
 
 }
