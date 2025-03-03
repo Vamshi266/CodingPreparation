@@ -36,6 +36,7 @@ public class LongestSubstringWithUniqueChars {
 	if (str.length() == 0)
 	    return 0;
 
+	// HashMap<Character,Index of Character>
 	HashMap<Character, Integer> hm = new HashMap<>();
 	int maxLen = Integer.MIN_VALUE;
 

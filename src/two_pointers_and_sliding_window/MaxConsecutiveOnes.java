@@ -59,6 +59,8 @@ public class MaxConsecutiveOnes {
 	return maxLen;
     }
 
+    // Time Complexity = O(N)
+    // Space Complexity = O(1)
     public static int optimal(int arr[], int k) {
 	int zeroCount = 0;
 	int maxLen = Integer.MIN_VALUE;
