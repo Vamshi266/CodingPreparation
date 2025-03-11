@@ -5,6 +5,45 @@ import java.util.List;
 
 public class PermutationsOfStringOrArray {
 
+    /* swap version start */
+    public static void swap(int index, int i, int[] nums) {
+	int temp = nums[index];
+	nums[index] = nums[i];
+	nums[i] = temp;
+	return;
+    }
+
+    // number of permutations = n!
+    // time complexity = O(n!) * O(n)
+    // space complexity = O(1)
+
+    public static void recurPermuate(int index, int[] nums, List<List<Integer>> ans) {
+	if (index == nums.length) {
+	    List<Integer> ds = new ArrayList<>();
+	    for (int i = 0; i < nums.length; i++) {
+		ds.add(nums[i]);
+	    }
+	    ans.add(new ArrayList<>(ds));
+	    return;
+	}
+
+	for (int i = index; i < nums.length; i++) {
+	    swap(i, index, nums);
+	    recurPermuate(index + 1, nums, ans);
+	    swap(i, index, nums);
+	}
+
+    }
+
+    public static List<List<Integer>> optimal2(int[] nums) {
+	List<List<Integer>> ans = new ArrayList<>();
+	recurPermuate(0, nums, ans);
+	return ans;
+    }
+
+    /* swap version end */
+
+    /* loop version start */
     public static void util(int arr[], List<Integer> al, List<List<Integer>> permutations, boolean freq[]) {
 
 	if (al.size() == arr.length) {
@@ -33,6 +72,8 @@ public class PermutationsOfStringOrArray {
 
 	return permutations;
     }
+
+    /* loop version end */
 
     public static void main(String[] args) {
 
