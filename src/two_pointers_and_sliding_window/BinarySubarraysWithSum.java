@@ -68,6 +68,7 @@ public class BinarySubarraysWithSum {
 
 	    sum += arr[r];
 
+	    // if sum > k reduce sum and move l
 	    while (sum > k) {
 		sum -= arr[l];
 		l++;

@@ -1,5 +1,6 @@
 package two_pointers_and_sliding_window;
 
+//concept linked to "binary subarray with sum"
 public class CountNumberOfNiceSubarrays {
 
     // Time Complexity = O(N^2)
