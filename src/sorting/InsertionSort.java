@@ -4,6 +4,14 @@ import java.util.Arrays;
 
 public class InsertionSort {
 
+    /*
+     * 
+     * go to right as long as it's increasing as you see the element less than
+     * previous element put it in the correct position by comparing to previous
+     * elements by going to the left
+     * 
+     */
+
     public static void insertionSort(int arr[]) {
 
 	int n = arr.length;
