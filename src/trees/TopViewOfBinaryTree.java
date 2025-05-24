@@ -1,7 +1,7 @@
 package trees;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.TreeMap;
@@ -12,43 +12,44 @@ public class TopViewOfBinaryTree {
 	int hd;
 	Node node;
 
-	public Pair(int hd, Node node) {
+	public Pair(Node node, int hd) {
 	    this.hd = hd;
 	    this.node = node;
 	}
 
     }
 
-    public static ArrayList<Integer> topView(Node node) {
+    public static ArrayList<Integer> topView(Node root) {
 
 	ArrayList<Integer> al = new ArrayList<>();
 
-	if (node == null)
+	if (root == null)
 	    return al;
 
-	Queue<Pair> q = new ArrayDeque<>();
-	Map<Integer, Integer> tm = new TreeMap<>();
-
-	q.offer(new Pair(0, node));
+	Queue<Pair> q = new LinkedList<>();
+	TreeMap<Integer, Integer> map = new TreeMap<>();
+	q.offer(new Pair(root, 0));
 
 	while (!q.isEmpty()) {
 	    Pair curr = q.poll();
+	    Node node = curr.node;
+	    int hd = curr.hd;
 
-	    if (!tm.containsKey(curr.hd))
-		tm.put(curr.hd, curr.node.data);
+	    if (!map.containsKey(hd))
+		map.put(hd, node.data);
 
-	    if (curr.node.left != null)
-		q.offer(new Pair(curr.hd - 1, curr.node.left));
+	    if (node.left != null)
+		q.offer(new Pair(node.left, hd - 1));
 
-	    if (curr.node.right != null)
-		q.offer(new Pair(curr.hd + 1, curr.node.right));
-
+	    if (node.right != null)
+		q.offer(new Pair(node.right, hd + 1));
 	}
 
-	al.addAll(tm.values());
+	for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+	    al.add(entry.getValue());
+	}
 
 	return al;
-
     }
 
     public static void main(String[] args) {
