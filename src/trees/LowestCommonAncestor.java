@@ -49,17 +49,24 @@ public class LowestCommonAncestor {
     // Space Complexity = O(N)
     public Node optimal(Node root, Node p, Node q) {
 
+	// if root is null or it is equal to p or it is equal to q
+	// return it
 	if (root == null || root == p || root == q)
 	    return root;
 
+	/// go left
 	Node left = optimal(root.left, p, q);
+	// go right
 	Node right = optimal(root.right, p, q);
 
+	// if we dont have p,q on left return right
 	if (left == null)
 	    return right;
+	// if we dont have p,q on right return left
 	else if (right == null)
 	    return left;
 	else
+	    // we found both p,q nodes return the ancestor node
 	    return root;
 
     }
