@@ -16,14 +16,14 @@ public class MorrisInorderTraversal {
 	// traverse until all nodes are finished
 	while (curr != null) {
 
-	    // if there is no left
+	    // if there is no left node
 	    // add it to list
 	    // move right
 	    if (curr.left == null) {
 		al.add(curr.data);
 		curr = curr.right;
 	    }
-	    // if there is no left node
+	    // if there is a left node
 	    else {
 
 		// take the curr.left ref
