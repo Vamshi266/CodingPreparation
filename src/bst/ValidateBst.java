@@ -2,36 +2,22 @@ package bst;
 
 public class ValidateBst {
 
-    public static boolean validateBst(Node node, int minVal, int maxVal) {
-	if (node == null)
+    boolean isBST(Node root) {
+	return validateBst(root, 0, (long) (1e9 + 1));
+    }
+
+    boolean validateBst(Node root, long minVal, long maxVal) {
+	if (root == null)
 	    return true;
 
-	if (node.data <= minVal || node.data >= maxVal)
+	if (root.data <= minVal || root.data >= maxVal)
 	    return false;
 
-	return validateBst(node.left, minVal, node.data) && validateBst(node.right, node.data, maxVal);
+	// if you are going to left
+	// minval = minval and maxval = root's val
+
+	// if you are going to right
+	// minval = root's val and maxval = maxval
+	return validateBst(root.left, minVal, root.data) && validateBst(root.right, root.data, maxVal);
     }
-
-    public static void main(String[] args) {
-
-	Node root = new Node(13);
-
-	root.left = new Node(10);
-	root.right = new Node(15);
-
-	root.left.left = new Node(7);
-	root.left.right = new Node(12);
-
-	root.left.left.right = new Node(9);
-	root.left.left.right.left = new Node(8);
-
-	root.right.left = new Node(14);
-	root.right.right = new Node(16);
-
-	root.right.right.left = new Node(18);
-
-	System.out.print("valid binarySearchTree : " + validateBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
-
-    }
-
 }
