@@ -33,7 +33,7 @@ public class InorderSuccessor {
     }
 
     // Time Complexity = O(N)
-    // Space Complexity = O(N)
+    // Space Complexity = O(1)
     public static void inOrderSuccessorV2(Node node, int key) {
 	int successor = 0;
 
